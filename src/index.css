@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  /* Purple & gold – elegant, not bright */
+  --color-primary: #5B4B8A;
+  --color-primary-hover: #6B5B9E;
+  --color-accent: #A57A22;
+  --color-accent-light: #B58B37;
+  --color-accent-dark: #7E5C19;
+  --color-surface: #F8F6FC;
+  --color-surface-card: #FFFFFF;
+  --color-surface-muted: #F0EDF5;
+  --color-text: #1a1a1f;
+  --color-text-muted: #5c5c66;
+}
+
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
