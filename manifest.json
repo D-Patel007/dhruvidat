@@ -1,0 +1,10 @@
+{
+  "name": "DAT Study Tracker",
+  "short_name": "DAT Tracker",
+  "description": "Track study time, focus sessions, and stay on track for the DAT.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F6FC",
+  "theme_color": "#5B4B8A",
+  "orientation": "portrait-preferred"
+}
