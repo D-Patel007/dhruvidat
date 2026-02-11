@@ -29,7 +29,11 @@ export function Reminders() {
   const [lastReminderTime, setLastReminderTime] = useState<number>(0);
 
   useEffect(() => {
-    requestNotificationPermission().then(setNotifPermission);
+    if (typeof window === "undefined" || !("Notification" in window)) {
+      setNotifPermission("denied");
+      return;
+    }
+    setNotifPermission(Notification.permission);
   }, []);
 
   const update = useCallback((partial: Partial<UserSettings>) => {
@@ -78,10 +82,18 @@ export function Reminders() {
 
       {notifPermission !== "granted" && (
         <Card>
-          <p className="text-sm text-[var(--color-text-muted)] mb-3">Enable notifications to get reminders.</p>
-          <Button onClick={() => requestNotificationPermission().then(setNotifPermission)}>
-            Enable notifications
-          </Button>
+          <p className="text-sm text-[var(--color-text-muted)] mb-3">
+            {typeof window === "undefined" || !("Notification" in window)
+              ? "This browser does not support notifications."
+              : notifPermission === "denied"
+                ? "Notifications are blocked in your browser settings. Enable them in the site settings to get reminders."
+                : "Enable notifications to get reminders."}
+          </p>
+          {typeof window !== "undefined" && "Notification" in window && notifPermission !== "denied" && (
+            <Button onClick={() => requestNotificationPermission().then(setNotifPermission)}>
+              Enable notifications
+            </Button>
+          )}
         </Card>
       )}
 
